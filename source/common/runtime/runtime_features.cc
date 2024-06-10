@@ -32,6 +32,7 @@
 RUNTIME_GUARD(envoy_reloadable_features_abort_filter_chain_on_stream_reset);
 RUNTIME_GUARD(envoy_reloadable_features_avoid_zombie_streams);
 RUNTIME_GUARD(envoy_reloadable_features_check_mep_on_first_eject);
+RUNTIME_GUARD(envoy_reloadable_features_check_switch_protocol_websocket_handshake);
 RUNTIME_GUARD(envoy_reloadable_features_conn_pool_delete_when_idle);
 RUNTIME_GUARD(envoy_reloadable_features_consistent_header_validation);
 RUNTIME_GUARD(envoy_reloadable_features_defer_processing_backedup_streams);
@@ -96,7 +97,6 @@ RUNTIME_GUARD(envoy_reloadable_features_tcp_tunneling_send_downstream_fin_on_ups
 RUNTIME_GUARD(envoy_reloadable_features_test_feature_true);
 RUNTIME_GUARD(envoy_reloadable_features_thrift_allow_negative_field_ids);
 RUNTIME_GUARD(envoy_reloadable_features_thrift_connection_draining);
-RUNTIME_GUARD(envoy_reloadable_features_token_passed_entirely);
 RUNTIME_GUARD(envoy_reloadable_features_udp_socket_apply_aggregated_read_limit);
 RUNTIME_GUARD(envoy_reloadable_features_uhv_allow_malformed_url_encoding);
 RUNTIME_GUARD(envoy_reloadable_features_upstream_allow_connect_with_2xx);
@@ -132,8 +132,6 @@ FALSE_RUNTIME_GUARD(envoy_reloadable_features_runtime_initialized);
 // TODO(mattklein123): Also unit test this if this sticks and this becomes the default for Apple &
 // Android.
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_always_use_v6);
-// TODO(wbpcode) complete remove this feature is no one use it.
-FALSE_RUNTIME_GUARD(envoy_reloadable_features_refresh_rtt_after_request);
 // TODO(vikaschoudhary16) flip this to true only after all the
 // TcpProxy::Filter::HttpStreamDecoderFilterCallbacks are implemented or commented as unnecessary
 FALSE_RUNTIME_GUARD(envoy_restart_features_upstream_http_filters_with_tcp_proxy);
@@ -150,7 +148,7 @@ FALSE_RUNTIME_GUARD(envoy_restart_features_use_eds_cache_for_ads);
 // For more information about Universal Header Validation, please see
 // https://github.com/envoyproxy/envoy/issues/10646
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_enable_universal_header_validator);
-// TODO(pksohn): enable after fixing https://github.com/envoyproxy/envoy/issues/29930
+// TODO(pksohn): enable after canarying fix for https://github.com/envoyproxy/envoy/issues/29930
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_quic_defer_logging_to_ack_listener);
 // TODO(panting): flip this to true after some test time.
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_use_config_in_happy_eyeballs);
@@ -160,6 +158,8 @@ FALSE_RUNTIME_GUARD(envoy_reloadable_features_prefer_quic_client_udp_gro);
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_reresolve_null_addresses);
 // TODO(alyssar) evaluate and either make this a config knob or remove.
 FALSE_RUNTIME_GUARD(envoy_reloadable_features_reresolve_if_no_connections);
+// TODO(adisuissa): flip to true after this is out of alpha mode.
+FALSE_RUNTIME_GUARD(envoy_restart_features_xds_failover_support);
 
 // A flag to set the maximum TLS version for google_grpc client to TLS1.2, when needed for
 // compliance restrictions.
